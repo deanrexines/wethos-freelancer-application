@@ -39,6 +39,7 @@ class App extends Component {
   toggleApproveFreelancer(user_pk) {
     const checkbox_val = document.getElementById("approveFreelancer").checked;
     var checkbox_val_int = checkbox_val == true ? 1 : 0;
+    console.log(checkbox_val_int);
     axios.post('http://localhost:8000/approve/' + checkbox_val_int + "/" + user_pk + "/")
       .then(function (response) {
       })

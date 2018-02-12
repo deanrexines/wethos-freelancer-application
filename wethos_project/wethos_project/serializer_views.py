@@ -41,8 +41,7 @@ def get_request_freelancer_by_id(request, pk):
 def approve_freelancer(request, approved, pk):
     if request.method == "POST":
         obj_to_update = Freelancer.objects.get(pk=pk)
-        approved_final = bool(approved)
-        print approved_final
+        approved_final = True if int(approved) == 1 else False
         obj_to_update.approved = approved_final
         obj_to_update.save()
         return HttpResponse(status=200)
