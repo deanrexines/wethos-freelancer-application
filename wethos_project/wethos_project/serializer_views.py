@@ -6,6 +6,7 @@ from .models import Freelancer
 from django.core import serializers
 from django.http import HttpResponse
 from django.utils.html import escape
+from django.views.decorators.csrf import csrf_exempt
 
 def create_new_freelancer(request):
     if request.method == "POST":
@@ -13,10 +14,10 @@ def create_new_freelancer(request):
         if form.is_valid():
             freelancer = form.save(commit=False)
             freelancer.save()
-            return redirect('post_edit.html', pk=freelancer.pk)
+            return HttpResponse(status=200)
     else:
         form = FreelancerForm()
-    return render(request, 'post_edit.html', {'form': form})
+    return HttpResponse(status=200)
 
 def get_freelancers(request):
     all_freelancers = Freelancer.objects.all()
@@ -35,3 +36,13 @@ def get_request_freelancer_by_id(request, pk):
         data = serializers.serialize('json', obj)
         bytes = data.encode('utf-8')
         return HttpResponse(bytes, content_type='application/json')
+
+@csrf_exempt
+def approve_freelancer(request, approved, pk):
+    if request.method == "POST":
+        obj_to_update = Freelancer.objects.get(pk=pk)
+        approved_final = bool(approved)
+        print approved_final
+        obj_to_update.approved = approved_final
+        obj_to_update.save()
+        return HttpResponse(status=200)

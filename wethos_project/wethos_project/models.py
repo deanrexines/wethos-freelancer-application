@@ -10,3 +10,4 @@ class Freelancer(models.Model):
     country = models.TextField()
     personal_website_url = models.TextField(blank=True, null=True)
     previous_work_urls = models.TextField(blank=True, null=True)
+    approved = models.BooleanField(default=False)

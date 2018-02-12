@@ -4,7 +4,6 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 from . import serializer_views
 
-
 router = routers.DefaultRouter()
 
 urlpatterns = [
@@ -13,5 +12,6 @@ urlpatterns = [
     url(r'^register/$', serializer_views.create_new_freelancer, name='create_new_freelancer'),
     url(r'^freelancers/$', serializer_views.get_freelancers, name='get_freelancers'),
     url(r'^getfreelancers/$', serializer_views.get_request_freelancers, name='get_request_freelancers'),
-    url(r'^getfreelancers/(?P<pk>[0-9]+)/$', serializer_views.get_request_freelancer_by_id, name='get_request_freelancer_by_id')
+    url(r'^getfreelancers/(?P<pk>[0-9]+)/$', serializer_views.get_request_freelancer_by_id, name='get_request_freelancer_by_id'),
+    url(r'^approve/(?P<approved>[0-9]+)/(?P<pk>[0-9]+)/$', serializer_views.approve_freelancer, name='approve_freelancer')
 ]
