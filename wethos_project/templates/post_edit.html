@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Freelancer Registration</h1>
+    <h2>Nonprofits Deserve the Best Talent</h2>
+    <p>
+    	Wethos matches nonprofits of all sizes with skilled, affordable freelancers that care about your cause so you can get back to solving the world’s toughest problems
+    </p>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

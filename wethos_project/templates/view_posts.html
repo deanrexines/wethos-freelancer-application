@@ -1,0 +1,13 @@
+<div>
+	<h3><strong>Wethos Freelancers</strong></h3>
+	{% for freelancer in freelancers_list %}
+		<div style="width: 50%; border: 1px solid black;">
+			<a style="float: right;">ID: {{freelancer.id}}</a>
+			<label>{{freelancer.first_name}} {{freelancer.last_name}}</label>
+			<p>Bio: {{freelancer.bio}}</p>
+			<label>Location: {{freelancer.city}}, {{freelancer.state}}, {{freelancer.country}}</label>
+			<label>Rersonal Website: {{freelancer.personal_website_url}}</label>
+			<label>Previous Work URLs: {{freelancer.previous_work_urls}}</label>
+		</div>
+	{% endfor %}
+</div>
